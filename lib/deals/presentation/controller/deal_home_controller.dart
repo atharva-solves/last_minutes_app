@@ -1,12 +1,31 @@
 import 'package:get/state_manager.dart';
+import 'package:last_minutes_deal/deals/domain/entities/category_chip_entity.dart';
 import 'package:last_minutes_deal/deals/domain/entities/deal_entity.dart';
 
 class DealHomeController extends GetxController {
+  final RxList<CategoryEntity> categoryList = <CategoryEntity>[
+    CategoryEntity(name: 'All', isSelected: true),
+    CategoryEntity(name: 'Hotel'),
+    CategoryEntity(name: 'Resort'),
+    CategoryEntity(name: 'Villa'),
+    CategoryEntity(name: 'Camping'),
+  ].obs;
+
+  void selectCategory(int index) {
+  for (int i = 0; i < categoryList.length; i++) {
+    final bool isSelected=i == index;
+    categoryList[i] = CategoryEntity(
+      name: categoryList[i].name,
+      isSelected:isSelected ,
+    );
+  }
+  categoryList.refresh();
+}
   final RxList<DealEntity> hotels = <DealEntity>[
     DealEntity(
       id: 'hotel_1',
       name: 'Hotel Horizon',
-      imageUrl: 'assets/images/home_images/hotels/hotel_1.jpg',
+      imageUrl: 'assets/images/home_images/hotel_1.jpg',
       location: 'Lonavala',
       rating: 4.0,
       reviewCount: 23,
@@ -18,7 +37,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'hotel_2',
       name: 'Hotel O Regency',
-      imageUrl: 'assets/images/home_images/hotels/hotel_2.jpg',
+      imageUrl: 'assets/images/home_images/hotel_2.jpg',
       location: 'Pune',
       rating: 3.1,
       reviewCount: 70,
@@ -30,7 +49,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'hotel_3',
       name: 'The Heritage Stay',
-      imageUrl: 'assets/images/home_images/hotels/hotel_3.jpg',
+      imageUrl: 'assets/images/home_images/hotel_3.jpg',
       location: 'Mahabaleshwar',
       rating: 4.5,
       reviewCount: 112,
@@ -42,7 +61,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'hotel_4',
       name: 'Urban Suites',
-      imageUrl: 'assets/images/home_images/hotels/hotel_4.jpg',
+      imageUrl: 'assets/images/home_images/hotel_4.jpg',
       location: 'Mumbai',
       rating: 4.2,
       reviewCount: 88,
@@ -57,7 +76,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'resort_1',
       name: 'Lagoon Palm Resort',
-      imageUrl: 'assets/images/home_images/resorts/resort_1.jpg',
+      imageUrl: 'assets/images/home_images/resort_1.jpg',
       location: 'Goa',
       rating: 4.5,
       reviewCount: 94,
@@ -69,7 +88,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'resort_2',
       name: 'Azure Water Villa Resort',
-      imageUrl: 'assets/images/home_images/resorts/resort_2.jpg',
+      imageUrl: 'assets/images/home_images/resort_2.jpg',
       location: 'Maldives',
       rating: 4.9,
       reviewCount: 156,
@@ -81,7 +100,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'resort_3',
       name: 'Seaside Breeze Resort',
-      imageUrl: 'assets/images/home_images/resorts/resort_3.jpg',
+      imageUrl: 'assets/images/home_images/resort_3.jpg',
       location: 'Kovalam',
       rating: 4.7,
       reviewCount: 118,
@@ -93,7 +112,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'resort_4',
       name: 'Splash World Park & Resort',
-      imageUrl: 'assets/images/home_images/resorts/resort_4.jpg',
+      imageUrl: 'assets/images/home_images/resort_4.jpg',
       location: 'Lonavala',
       rating: 4.2,
       reviewCount: 63,
@@ -108,7 +127,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'villa_1',
       name: 'Villas_24',
-      imageUrl: 'assets/images/home_images/villas/villa_1.jpg',
+      imageUrl: 'assets/images/home_images/villa_1.jpg',
       location: 'Lonavala',
       rating: 4.6,
       reviewCount: 87,
@@ -120,7 +139,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'villa_2',
       name: 'Palace Villa',
-      imageUrl: 'assets/images/home_images/villas/villa_2.jpg',
+      imageUrl: 'assets/images/home_images/villa_2.jpg',
       location: 'Mumbai',
       rating: 3.7,
       reviewCount: 28,
@@ -132,7 +151,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'villa_3',
       name: 'Ekostay Palm Villa',
-      imageUrl: 'assets/images/home_images/villas/villa_3.jpg',
+      imageUrl: 'assets/images/home_images/villa_3.jpg',
       location: 'Alibaug',
       rating: 4.8,
       reviewCount: 104,
@@ -144,7 +163,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'villa_4',
       name: 'Sunset Grand Villa',
-      imageUrl: 'assets/images/home_images/villas/villa_4.jpg',
+      imageUrl: 'assets/images/home_images/villa_4.jpg',
       location: 'Karjat',
       rating: 4.3,
       reviewCount: 45,
@@ -159,7 +178,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'camp_1',
       name: 'A-Frame Wooden Huts',
-      imageUrl: 'assets/images/home_images/campings/camp_1.jpg',
+      imageUrl: 'assets/images/home_images/camp_1.jpg',
       location: 'Pawna Lake',
       rating: 4.5,
       reviewCount: 62,
@@ -171,7 +190,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'camp_2',
       name: 'Forest Treehouse Camp',
-      imageUrl: 'assets/images/home_images/campings/camp_2.jpg',
+      imageUrl: 'assets/images/home_images/camp_2.jpg',
       location: 'Wayanad',
       rating: 4.7,
       reviewCount: 89,
@@ -183,7 +202,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'camp_3',
       name: 'Luxury Glamping Bell Tent',
-      imageUrl: 'assets/images/home_images/campings/camp_3.jpg',
+      imageUrl: 'assets/images/home_images/camp_3.jpg',
       location: 'Alibaug',
       rating: 4.6,
       reviewCount: 41,
@@ -195,7 +214,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'camp_4',
       name: 'Pine Forest Safari Camp',
-      imageUrl: 'assets/images/home_images/campings/camp_4.jpg',
+      imageUrl: 'assets/images/home_images/camp_4.jpg',
       location: 'Manali',
       rating: 4.8,
       reviewCount: 115,
@@ -207,7 +226,7 @@ class DealHomeController extends GetxController {
     DealEntity(
       id: 'camp_5',
       name: 'Luxury Dome Pod Stay',
-      imageUrl: 'assets/images/home_images/campings/camp_5.jpg',
+      imageUrl: 'assets/images/home_images/camp_5.jpg',
       location: 'Karsog',
       rating: 4.4,
       reviewCount: 33,

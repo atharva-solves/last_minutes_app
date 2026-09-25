@@ -49,11 +49,11 @@ class DealStylingConstants {
   static const double textSizeLocation = 13.0;
   static const double textSizeRating = 12.0;
   static const double textSizePrice = 16.0;
-  static const double textSizeBtn = 14.0;
+  static const double textSizeBtn = 12.0;
 
   // Page
   static const double textSizeHeroHeadline = 32.0;
-  static const double textSizeSectionHeader = 22.0;
+  static const double textSizeSectionHeader = 20.0;
   static const double textSizeFormLabel = 10.0;
 
   // ============================================================
@@ -62,7 +62,7 @@ class DealStylingConstants {
 
   /// "Live Deal"
   static TextStyle get liveDealTextStyle => GoogleFonts.roboto(
-    fontSize: 14.0,
+    fontSize: 13.0,
     fontWeight: FontWeight.w700,
     color: redColor,
   );
@@ -122,8 +122,9 @@ class DealStylingConstants {
   /// Hero headline
   static TextStyle get heroHeadlineStyle => GoogleFonts.roboto(
     fontSize: textSizeHeroHeadline,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w900,
     color: textColor,
+    letterSpacing: -1.0,
   );
 
   /// Section title
@@ -140,7 +141,7 @@ class DealStylingConstants {
 
   static const BoxShadow cardShadow = BoxShadow(
     color: shadowColor,
-    blurRadius: 12.0,
+    blurRadius: 6.0,
     offset: Offset(0, 4),
   );
 
@@ -153,12 +154,9 @@ class DealStylingConstants {
     borderRadius: BorderRadius.circular(liveDealPillRadius),
   );
 
-  static BoxDecoration imageContainerDeco = BoxDecoration(
-    image: const DecorationImage(
-      image: AssetImage(AssetPaths.hotel1),
-      fit: BoxFit.cover,
-    ),
-    borderRadius: BorderRadius.circular(cardRadius),
+   static BoxDecoration viewAllContainerDeco = BoxDecoration(
+    color: const Color(0xFFFFEEEE),
+    borderRadius: BorderRadius.circular(8.0),
   );
 
   static BoxDecoration bookNowContDeco = BoxDecoration(
