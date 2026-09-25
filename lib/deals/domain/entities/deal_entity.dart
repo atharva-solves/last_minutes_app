@@ -7,11 +7,11 @@ class DealEntity {
   final int reviewCount;
   final double pricePerNight;
   final String currencySymbol;
-  final bool isLiveDeal;
-  final bool isFavorite;
+   bool isLiveDeal;
+   bool isFavorite;
   final String category;
 
-  const DealEntity({
+   DealEntity({
     required this.id,
     required this.name,
     required this.imageUrl,
@@ -20,8 +20,8 @@ class DealEntity {
     required this.reviewCount,
     required this.pricePerNight,
     this.currencySymbol = '₹',
-    this.isLiveDeal = true,
-    this.isFavorite = false,
+    required this.isLiveDeal ,
+    required this.isFavorite ,
     required this.category,
   });
 
