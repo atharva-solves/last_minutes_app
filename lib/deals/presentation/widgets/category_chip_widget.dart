@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:last_minutes_deal/deals/domain/entities/category_chip_entity.dart';
-import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 
 class CategoryChip extends StatelessWidget {
   final CategoryEntity category;
@@ -14,29 +13,24 @@ class CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 60.0,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          decoration: BoxDecoration(
-            color: category.isSelected
-                ? DealStylingConstants.redColor
-                : DealStylingConstants.bgColor,
-            borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(
-              color: category.isSelected
-                  ? DealStylingConstants.redColor
-                  : DealStylingConstants.borderColor,
-              width: 1.0,
-            ),
-          ),
-          child: Center(
-            child: Text(
-              category.name,
-              style: DealStylingConstants.cardBtnStyle.copyWith(
-                color: category.isSelected ? Colors.white : Colors.black,
-              ),
+    final isSelected = category.isSelected;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        decoration: BoxDecoration(
+          // Dark fill when selected, soft light grey when unselected
+          color: isSelected ? const Color(0xFF0F172A) : const Color(0xFFF3F4F6),
+          borderRadius: BorderRadius.circular(24.0),
+        ),
+        child: Center(
+          child: Text(
+            category.name,
+            style: TextStyle(
+              fontSize: 14.0,
+              fontWeight: FontWeight.w600,
+              color: isSelected ? Colors.white : const Color(0xFF1F2937),
             ),
           ),
         ),
