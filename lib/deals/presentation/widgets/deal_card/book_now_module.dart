@@ -14,9 +14,8 @@ class BookNowButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: onBookTap,
       child: Container(
-        height: 40.0,
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 1),
+        height: 34.0, // Reduced height
+        padding: const EdgeInsets.symmetric(horizontal: 12.0), // Allows width to adapt to text
         decoration: DealStylingConstants.bookNowContDeco,
         child: Center(
           child: Text(

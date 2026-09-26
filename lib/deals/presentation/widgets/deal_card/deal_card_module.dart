@@ -5,7 +5,6 @@ import 'package:last_minutes_deal/deals/presentation/widgets/deal_card/book_now_
 import 'package:last_minutes_deal/deals/presentation/widgets/deal_card/deal_detail_module.dart';
 import 'package:last_minutes_deal/deals/presentation/widgets/deal_card/deal_image_module.dart';
 
-
 class DealCard extends StatelessWidget {
   final DealEntity deal;
   final VoidCallback? onBookTap;
@@ -23,16 +22,14 @@ class DealCard extends StatelessWidget {
     return Container(
       width: DealStylingConstants.cardWidth,
       height: DealStylingConstants.cardHeight,
-      padding: const EdgeInsets.all(8.0),
+      // Removed internal padding so the image can touch the edges
       decoration: BoxDecoration(
         color: DealStylingConstants.bgColor,
         borderRadius: BorderRadius.circular(DealStylingConstants.cardRadius),
         border: Border.all(color: DealStylingConstants.borderColor),
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(DealStylingConstants.cardRadius),
-        ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(DealStylingConstants.cardRadius),
         child: Column(
           children: [
             // 1. Image, Live Deal Tag, and Favorite Icon Module
@@ -40,21 +37,43 @@ class DealCard extends StatelessWidget {
               deal: deal,
               onFavoriteTap: onFavoriteTap,
             ),
-            const SizedBox(height: 15.0),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // 2. Deal Details Module (Name, Location, Rating, Price)
-                  DealDetailModule(
-                    deal: deal,
-                  ),
-                  const SizedBox(height: 8.0),
-                  // 3. Book Now Button Module
-                  BookNowButtonModule(
-                    onBookTap: onBookTap,
-                  ),
-                ],
+              // 2. Padding applied ONLY to the details/bottom section
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // 3. Deal Details Module (Name, Location, Rating)
+                    DealDetailModule(
+                      deal: deal,
+                    ),
+                    // 4. Price and Book Now Button Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${deal.currencySymbol}${deal.pricePerNight}',
+                              style: DealStylingConstants.cardPriceStyle,
+                            ),
+                            Text(
+                              '/night',
+                              style: DealStylingConstants.reviewCountStyle,
+                            ),
+                          ],
+                        ),
+                        BookNowButtonModule(
+                          onBookTap: onBookTap,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

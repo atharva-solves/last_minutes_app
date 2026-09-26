@@ -12,6 +12,7 @@ class SearchStaysCard extends GetView<DealHomeController> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 18),
       width: double.infinity,
       decoration: BoxDecoration(
         color: DealStylingConstants.bgColor, // White/Greyish background

@@ -14,26 +14,29 @@ class CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: category.isSelected
-              ? DealStylingConstants.redColor
-              : DealStylingConstants.bgColor,
-          borderRadius: BorderRadius.circular(8.0),
-          border: Border.all(
+    return SizedBox(
+      width: 60.0,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
             color: category.isSelected
                 ? DealStylingConstants.redColor
-                : DealStylingConstants.borderColor,
-            width: 1.0,
+                : DealStylingConstants.bgColor,
+            borderRadius: BorderRadius.circular(8.0),
+            border: Border.all(
+              color: category.isSelected
+                  ? DealStylingConstants.redColor
+                  : DealStylingConstants.borderColor,
+              width: 1.0,
+            ),
           ),
-        ),
-        child: Center(
-          child: Text(
-            category.name,
-            style: DealStylingConstants.cardBtnStyle.copyWith(
-              color: category.isSelected ? Colors.white : Colors.black,
+          child: Center(
+            child: Text(
+              category.name,
+              style: DealStylingConstants.cardBtnStyle.copyWith(
+                color: category.isSelected ? Colors.white : Colors.black,
+              ),
             ),
           ),
         ),

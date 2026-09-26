@@ -29,11 +29,12 @@ class DealStylingConstants {
   // ============================================================
 
   static const double pagePadding = 16.0;
-  static const double sectionGap = 24.0;
+  static const double margin = 16.0;
+  static const double sectionGap = 10.0;
   static const double cardGap = 12.0;
 
-  static const double cardWidth = 270.0;
-  static const double cardHeight = 355.0;
+  static const double cardWidth = 200.0;
+  static const double cardHeight = 250.0;
   static const double listingImageSize = 100.0;
   static const double cardPadding = 12.0;
   static const double cardRadius = 16.0;
@@ -52,7 +53,7 @@ class DealStylingConstants {
   static const double textSizeBtn = 12.0;
 
   // Page
-  static const double textSizeHeroHeadline = 32.0;
+  static const double textSizeHeroHeadline = 30.0;
   static const double textSizeSectionHeader = 20.0;
   static const double textSizeFormLabel = 10.0;
 

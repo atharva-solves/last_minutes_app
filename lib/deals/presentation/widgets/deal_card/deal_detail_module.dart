@@ -15,54 +15,52 @@ class DealDetailModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(deal.name, style: DealStylingConstants.cardNameStyle),
-        const SizedBox(height: 8.0),
+        Text(
+          deal.name, 
+          style: DealStylingConstants.cardNameStyle,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: 4.0), // Reduced spacing
         Row(
           children: [
             const Icon(
               Icons.location_on_outlined,
-              size: 18,
+              size: 16,
               color: Color.fromARGB(255, 98, 105, 118),
             ),
-            const SizedBox(width: 3.0),
-            Text(
-              '${deal.location},',
-              style: DealStylingConstants.cardLocationStyle,
+            const SizedBox(width: 2.0),
+            Expanded(
+              child: Text(
+                deal.location, // Removed trailing comma to match UI
+                style: DealStylingConstants.cardLocationStyle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ],
         ),
-        const SizedBox(height: 8.0),
+        const SizedBox(height: 4.0), // Reduced spacing
         Row(
           children: [
             const Icon(
               Icons.star,
-              size: 18,
+              size: 16,
               color: DealStylingConstants.redColor,
             ),
-            const SizedBox(width: 3.0),
+            const SizedBox(width: 4.0),
             Text(
               deal.rating.toString(),
               style: DealStylingConstants.cardRatingStyle,
             ),
+            const SizedBox(width: 4.0),
             Text(
-              '(${deal.reviewCount.toString()})',
+              '(${deal.reviewCount})',
               style: DealStylingConstants.reviewCountStyle,
             ),
           ],
         ),
-        const SizedBox(height: 8.0),
-        Row(
-          children: [
-            Text(
-              '${deal.currencySymbol} ${deal.pricePerNight}',
-              style: DealStylingConstants.cardPriceStyle,
-            ),
-            Text(
-              ' / night',
-              style: DealStylingConstants.reviewCountStyle,
-            ),
-          ],
-        ),
+        // Note: Price row was moved to DealCard to sit adjacent to the button
       ],
     );
   }

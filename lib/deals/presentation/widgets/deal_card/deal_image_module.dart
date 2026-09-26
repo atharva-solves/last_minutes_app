@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:last_minutes_deal/core/constants/asset_paths.dart';
 import 'package:last_minutes_deal/deals/domain/entities/deal_entity.dart';
 import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 
@@ -16,14 +15,17 @@ class DealImageModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 165,
+      height: 115, // Reduced height to allow more space for details
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(deal.imageUrl),
             fit: BoxFit.cover,
           ),
-          borderRadius: BorderRadius.circular(DealStylingConstants.cardRadius),
+          // Only round the top corners to match the card edges
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(DealStylingConstants.cardRadius),
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -35,13 +37,20 @@ class DealImageModule extends StatelessWidget {
                 deal.isLiveDeal
                     ? Flexible(
                         child: Container(
-                          height: 25,
-                          decoration:
-                              DealStylingConstants.liveDealContainerDeco,
+                          height: 24,
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          decoration: BoxDecoration(
+                            color: DealStylingConstants.redColor, // Solid red background
+                            borderRadius: BorderRadius.circular(12.0), // Rounded pill shape
+                          ),
                           child: Center(
                             child: Text(
                               DealStylingConstants.liveDealText,
-                              style: DealStylingConstants.liveDealTextStyle,
+                              style: const TextStyle(
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white, // White text to match UI
+                              ),
                             ),
                           ),
                         ),
@@ -51,7 +60,8 @@ class DealImageModule extends StatelessWidget {
                 GestureDetector(
                   onTap: onFavoriteTap,
                   child: CircleAvatar(
-                    radius: 18.0,
+                    radius: 16.0, 
+                    backgroundColor: Colors.white,
                     child: Icon(
                       deal.isFavorite ? Icons.favorite : Icons.favorite_border,
                       size: 18.0,

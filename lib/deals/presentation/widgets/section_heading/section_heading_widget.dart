@@ -14,18 +14,22 @@ class SectionHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          title,
-          style: DealStylingConstants.sectionHeaderStyle,
-        ),
-        ViewAllButtonModule(
-          onTap: onViewAllTap,
-        ),
-      ],
+    return Container(
+       margin: EdgeInsets.symmetric(horizontal: DealStylingConstants.margin),
+               
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            title,
+            style: DealStylingConstants.sectionHeaderStyle,
+          ),
+          ViewAllButtonModule(
+            onTap: onViewAllTap,
+          ),
+        ],
+      ),
     );
   }
 }
