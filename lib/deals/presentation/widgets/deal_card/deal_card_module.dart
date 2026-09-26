@@ -33,10 +33,7 @@ class DealCard extends StatelessWidget {
         child: Column(
           children: [
             // 1. Image, Live Deal Tag, and Favorite Icon Module
-            DealImageModule(
-              deal: deal,
-              onFavoriteTap: onFavoriteTap,
-            ),
+            DealImageModule(deal: deal, onFavoriteTap: onFavoriteTap),
             Expanded(
               // 2. Padding applied ONLY to the details/bottom section
               child: Padding(
@@ -46,30 +43,33 @@ class DealCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // 3. Deal Details Module (Name, Location, Rating)
-                    DealDetailModule(
-                      deal: deal,
-                    ),
+                    DealDetailModule(deal: deal),
                     // 4. Price and Book Now Button Row
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '${deal.currencySymbol}${deal.pricePerNight}',
-                              style: DealStylingConstants.cardPriceStyle,
-                            ),
-                            Text(
-                              '/night',
-                              style: DealStylingConstants.reviewCountStyle,
-                            ),
-                          ],
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '${deal.currencySymbol}${deal.pricePerNight}',
+                                  style: DealStylingConstants.cardPriceStyle,
+                                ),
+                              ),
+                              Text(
+                                '/night',
+                                style: DealStylingConstants.reviewCountStyle,
+                              ),
+                            ],
+                          ),
                         ),
-                        BookNowButtonModule(
-                          onBookTap: onBookTap,
-                        ),
+                        BookNowButtonModule(onBookTap: onBookTap),
                       ],
                     ),
                   ],

@@ -15,12 +15,12 @@ class CheckInOutModule extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: const Color.fromARGB(255, 244, 66, 66).withOpacity(0.2)
+            color: const Color.fromARGB(255, 244, 66, 66).withOpacity(0.1)
            ),
           child: const Icon(
             Icons.calendar_today_outlined,
-            color: DealStylingConstants.redColor,
-            size: 20.0,
+            color: Color.fromARGB(255, 224, 49, 49),
+            size: DealStylingConstants.searchStayIconSize,
           ),
         ),
         const SizedBox(width: 16.0),
@@ -32,12 +32,7 @@ class CheckInOutModule extends StatelessWidget {
             children: [
               Text(
                 'CHECK-IN — CHECK-OUT',
-                style: GoogleFonts.roboto(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w700,
-                  color: const Color(0xFF9CA3AF),
-                  letterSpacing: 0.8,
-                ),
+                style: DealStylingConstants.searchHeadingTextStyle
               ),
               const SizedBox(height: 4.0),
               Row(
@@ -52,12 +47,7 @@ class CheckInOutModule extends StatelessWidget {
                   ),
                   Text(
                 '• 2 nights',
-                style: GoogleFonts.roboto(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w700,
-                  color: const Color(0xFF9CA3AF),
-                  letterSpacing: 0.8,
-                ),
+                style: DealStylingConstants.searchHeadingTextStyle
               ),
                 ],
               ),

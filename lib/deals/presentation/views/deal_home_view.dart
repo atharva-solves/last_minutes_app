@@ -88,7 +88,7 @@ class DealHomeView extends GetView<DealHomeController> {
                   const SizedBox(height: 16.0),
                   
                   DealCardLvb(dealList: controller.campings),
-                  const SizedBox(height: 16.0),
+                  const SizedBox(height: 25.0),
                         
                   BottomContainer(),
                 ],

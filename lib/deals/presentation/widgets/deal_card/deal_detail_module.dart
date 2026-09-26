@@ -5,10 +5,7 @@ import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_cons
 class DealDetailModule extends StatelessWidget {
   final DealEntity deal;
 
-  const DealDetailModule({
-    super.key,
-    required this.deal,
-  });
+  const DealDetailModule({super.key, required this.deal});
 
   @override
   Widget build(BuildContext context) {
@@ -16,37 +13,43 @@ class DealDetailModule extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          deal.name, 
+          deal.name,
           style: DealStylingConstants.cardNameStyle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
         const SizedBox(height: 4.0), // Reduced spacing
-        Row(
-          children: [
-            const Icon(
-              Icons.location_on_outlined,
-              size: 16,
-              color: Color.fromARGB(255, 98, 105, 118),
-            ),
-            const SizedBox(width: 2.0),
-            Expanded(
-              child: Text(
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 6),
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 237, 239, 242), // Solid red background
+            borderRadius: BorderRadius.circular(12.0), // Rounded pill shape
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.location_on_outlined,
+                size: DealStylingConstants.locAndRateIconSize,
+                color: DealStylingConstants.cardDetailIconColor,
+              ),
+              const SizedBox(width: 2.0),
+              Text(
                 deal.location, // Removed trailing comma to match UI
                 style: DealStylingConstants.cardLocationStyle,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         const SizedBox(height: 4.0), // Reduced spacing
         Row(
           children: [
             const Icon(
               Icons.star,
-              size: 16,
-              color: DealStylingConstants.redColor,
+              size: DealStylingConstants.locAndRateIconSize,
+              color: DealStylingConstants.cardDetailIconColor,
             ),
             const SizedBox(width: 4.0),
             Text(

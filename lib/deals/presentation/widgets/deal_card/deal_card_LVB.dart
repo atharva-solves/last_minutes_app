@@ -19,7 +19,7 @@ class DealCardLvb extends GetView<DealHomeController> {
                     itemCount: dealList.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.only(right: 16.0),
+                        padding: const EdgeInsets.only(right: 10.0),
                         child: DealCard(
                           deal: dealList[index],
                           onBookTap: () {},

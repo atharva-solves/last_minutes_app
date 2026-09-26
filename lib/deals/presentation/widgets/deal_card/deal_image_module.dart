@@ -37,19 +37,26 @@ class DealImageModule extends StatelessWidget {
                 deal.isLiveDeal
                     ? Flexible(
                         child: Container(
-                          height: 24,
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          height: 20,
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
                           decoration: BoxDecoration(
-                            color: DealStylingConstants.redColor, // Solid red background
-                            borderRadius: BorderRadius.circular(12.0), // Rounded pill shape
+                            color: DealStylingConstants
+                                .redColor, // Solid red background
+                            borderRadius: BorderRadius.circular(
+                              12.0,
+                            ), // Rounded pill shape
                           ),
                           child: Center(
-                            child: Text(
-                              DealStylingConstants.liveDealText,
-                              style: const TextStyle(
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white, // White text to match UI
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                DealStylingConstants.liveDealText,
+                                style: const TextStyle(
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white, // White text to match UI
+                                ),
                               ),
                             ),
                           ),
@@ -60,11 +67,11 @@ class DealImageModule extends StatelessWidget {
                 GestureDetector(
                   onTap: onFavoriteTap,
                   child: CircleAvatar(
-                    radius: 16.0, 
+                    radius: 11.0,
                     backgroundColor: Colors.white,
                     child: Icon(
                       deal.isFavorite ? Icons.favorite : Icons.favorite_border,
-                      size: 18.0,
+                      size: 12.0,
                       color: Colors.red,
                     ),
                   ),

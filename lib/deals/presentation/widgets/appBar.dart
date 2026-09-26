@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:last_minutes_deal/core/constants/asset_paths.dart';
@@ -26,7 +27,7 @@ class AppbarWidget extends StatelessWidget {
             child: Icon(
               Icons.local_fire_department,
               color: Colors.white,
-              size: 20.0,
+              size: 22.0,
             ),
           ),
 
@@ -38,7 +39,7 @@ class AppbarWidget extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
 
-              fontSize: 16.0,
+              fontSize: 17.0,
 
               fontWeight: FontWeight.w700,
             ),
@@ -61,7 +62,7 @@ class AppbarWidget extends StatelessWidget {
 
               color: Colors.white,
 
-              size: 20.0,
+              size: 24.0,
             ),
           ),
 
@@ -73,7 +74,7 @@ class AppbarWidget extends StatelessWidget {
 
             backgroundColor: Color(0xFF4B5563), // Dark grey placeholder
 
-            child: Icon(Icons.person, color: Colors.white, size: 20.0),
+            child: Icon(Icons.person, color: Colors.white, size: 24.0),
           ),
         ],
       ),

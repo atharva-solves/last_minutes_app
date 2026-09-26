@@ -159,11 +159,11 @@ class DealStylingConstants {
 
   static const double pagePadding = 16.0;
   static const double margin = 16.0;
-  static const double sectionGap = 24.0;
+  static const double sectionGap = 10.0;
   static const double cardGap = 12.0;
 
-  static const double cardWidth = 270.0;
-  static const double cardHeight = 355.0;
+  static const double cardWidth = 200.0;
+  static const double cardHeight = 250.0;
   static const double listingImageSize = 100.0;
   static const double cardPadding = 12.0;
   static const double cardRadius = 16.0;
@@ -182,7 +182,7 @@ class DealStylingConstants {
   static const double textSizeBtn = 12.0;
 
   // Page
-  static const double textSizeHeroHeadline = 32.0;
+  static const double textSizeHeroHeadline = 30.0;
   static const double textSizeSectionHeader = 20.0;
   static const double textSizeFormLabel = 10.0;
 
@@ -541,6 +541,7 @@ import 'package:get/state_manager.dart';
 import 'package:last_minutes_deal/core/constants/asset_paths.dart';
 import 'package:last_minutes_deal/deals/presentation/controller/deal_home_controller.dart';
 import 'package:last_minutes_deal/deals/presentation/widgets/appBar.dart';
+import 'package:last_minutes_deal/deals/presentation/widgets/bg_gradient.dart';
 import 'package:last_minutes_deal/deals/presentation/widgets/bottom_bar/bottomOption.dart';
 import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 import 'package:last_minutes_deal/deals/presentation/widgets/bottom_bar/bottom_container.dart';
@@ -561,78 +562,87 @@ class DealHomeView extends GetView<DealHomeController> {
       backgroundColor: DealStylingConstants.bgColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              AppbarWidget(),
-              const SizedBox(height: DealStylingConstants.sectionGap),
-              HeroHeadingText(),
-
-              const SizedBox(height: 30.0),
-              SearchStaysCard(),
-
-              //Category chips
-              const SizedBox(height: 24.0),
-
-              CategoryLvb(),
-
-              const SizedBox(height: 28.0),
-
-              // 1. Last Minute Hotels Section
-              SectionHeaderWidget(
-                title: 'Last Minutes Hotels',
-                onViewAllTap: () {},
-              ),
-              const SizedBox(height: 16.0),
+              // Background gradient container
+             BackgroundGradientContainer(),
               
-              DealCardLvb(dealList: controller.hotels),
-
-              const SizedBox(height: 28.0),
-
-              // 2. Last Minute Resorts Section (using GridView.builder as requested)
-              SectionHeaderWidget(
-                title: 'Last Minutes Resorts',
-                onViewAllTap: () {},
+              // Foreground content
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppbarWidget(),
+                  const SizedBox(height: DealStylingConstants.sectionGap),
+                  HeroHeadingText(),
+                        
+                  const SizedBox(height: 20.0),
+                  SearchStaysCard(),
+                        
+                  //Category chips
+                  const SizedBox(height: 24.0),
+                        
+                  CategoryLvb(),
+                        
+                  const SizedBox(height: 28.0),
+                        
+                  // 1. Last Minute Hotels Section
+                  SectionHeaderWidget(
+                    title: 'Last Minutes Hotels',
+                    onViewAllTap: () {},
+                  ),
+                  const SizedBox(height: 16.0),
+                  
+                  DealCardLvb(dealList: controller.hotels),
+                        
+                  const SizedBox(height: 28.0),
+                        
+                  // 2. Last Minute Resorts Section (using GridView.builder as requested)
+                  SectionHeaderWidget(
+                    title: 'Last Minutes Resorts',
+                    onViewAllTap: () {},
+                  ),
+                  const SizedBox(height: 16.0),
+                  
+                  DealCardLvb(dealList: controller.resorts),
+                        
+                  const SizedBox(height: 28.0),
+                        
+                  // 3. Last Minute Villas Section
+                  SectionHeaderWidget(
+                    title: 'Last Minutes Villas',
+                    onViewAllTap: () {},
+                  ),
+                  const SizedBox(height: 16.0),
+                 
+                  DealCardLvb(dealList: controller.villas),
+                        
+                  const SizedBox(height: 28.0),
+                        
+                  // 4. Last Minute Camping Section
+                  SectionHeaderWidget(
+                    title: 'Last Minutes Camping',
+                    onViewAllTap: () {},
+                  ),
+                  const SizedBox(height: 16.0),
+                  
+                  DealCardLvb(dealList: controller.campings),
+                  const SizedBox(height: 16.0),
+                        
+                  BottomContainer(),
+                ],
               ),
-              const SizedBox(height: 16.0),
-              
-              DealCardLvb(dealList: controller.resorts),
-
-              const SizedBox(height: 28.0),
-
-              // 3. Last Minute Villas Section
-              SectionHeaderWidget(
-                title: 'Last Minutes Villas',
-                onViewAllTap: () {},
-              ),
-              const SizedBox(height: 16.0),
-             
-              DealCardLvb(dealList: controller.villas),
-
-              const SizedBox(height: 28.0),
-
-              // 4. Last Minute Camping Section
-              SectionHeaderWidget(
-                title: 'Last Minutes Camping',
-                onViewAllTap: () {},
-              ),
-              const SizedBox(height: 16.0),
-              
-              DealCardLvb(dealList: controller.campings),
-              const SizedBox(height: 16.0),
-
-              BottomContainer(),
             ],
           ),
         ),
       ),
     );
   }
-}
- 
+} 
 // --- File: E:\IT\Flutter Marathon july aug\FLUTTER PREPS\ASSIGNMENT APPS intern\last_minutes_deal\lib\deals\presentation\widgets\appBar.dart ---  
 import 'package:flutter/material.dart';
+
 import 'package:last_minutes_deal/core/constants/asset_paths.dart';
+
 import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 
 class AppbarWidget extends StatelessWidget {
@@ -640,31 +650,107 @@ class AppbarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-                margin: EdgeInsets.symmetric(horizontal: DealStylingConstants.margin),
-                child: Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 24,
-                      backgroundColor: Colors.transparent,
-                      backgroundImage: AssetImage(AssetPaths.logo),
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: DealStylingConstants.margin,
+        vertical: 16.0,
+      ),
+
+      child: Row(
+        children: [
+          // Logo & Title
+          const CircleAvatar(
+            radius: 16.0,
+
+            backgroundColor: DealStylingConstants.redColor,
+
+            child: Icon(
+              Icons.local_fire_department,
+              color: Colors.white,
+              size: 20.0,
+            ),
+          ),
+
+          const SizedBox(width: 8.0),
+
+          const Text(
+            'Last Minutes Deal',
+
+            style: TextStyle(
+              color: Colors.white,
+
+              fontSize: 16.0,
+
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+
+          const Spacer(),
+
+          // Notification Bell
+          Container(
+            padding: const EdgeInsets.all(6.0),
+
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: const Color.fromARGB(66, 255, 255, 255),
+              border: Border.all(color: const Color.fromARGB(55, 255, 255, 255), width: 1.0),
+            ),
+
+            child: const Icon(
+              Icons.notifications_outlined,
+
+              color: Colors.white,
+
+              size: 20.0,
+            ),
+          ),
+
+          const SizedBox(width: 12.0),
+
+          // Profile Placeholder (Pixel Perfect Size)
+          const CircleAvatar(
+            radius: 16.0,
+
+            backgroundColor: Color(0xFF4B5563), // Dark grey placeholder
+
+            child: Icon(Icons.person, color: Colors.white, size: 20.0),
+          ),
+        ],
+      ),
+    );
+  }
+}
+ 
+// --- File: E:\IT\Flutter Marathon july aug\FLUTTER PREPS\ASSIGNMENT APPS intern\last_minutes_deal\lib\deals\presentation\widgets\bg_gradient.dart ---  
+import 'package:flutter/material.dart';
+import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
+
+class BackgroundGradientContainer extends StatelessWidget {
+  const BackgroundGradientContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  // Adjust height to cover the top section behind your headers and search card
+                  height: 300.0,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50.0),
+                      bottomRight: Radius.circular(50.0),
                     ),
-                    const Spacer(),
-                    IconButton.outlined(
-                      iconSize: 28.0,
-                      padding: const EdgeInsets.all(6.0),
-                      constraints: const BoxConstraints(),
-                      style: IconButton.styleFrom(
-                        side: const BorderSide(
-                          color: Color(0xFF4B5563),
-                          width: 1.0,
-                        ),
-                      ),
-                      icon: const Icon(Icons.person_outline, size: 27),
-                      color: DealStylingConstants.textColor,
-                      onPressed: () {},
+                    gradient: RadialGradient(
+                      center: Alignment.bottomRight,
+                      radius: 0.75,
+                      colors: [
+                        DealStylingConstants.redColor,
+                        Colors.black,
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               );
   }
@@ -672,7 +758,6 @@ class AppbarWidget extends StatelessWidget {
 // --- File: E:\IT\Flutter Marathon july aug\FLUTTER PREPS\ASSIGNMENT APPS intern\last_minutes_deal\lib\deals\presentation\widgets\category_chip_widget.dart ---  
 import 'package:flutter/material.dart';
 import 'package:last_minutes_deal/deals/domain/entities/category_chip_entity.dart';
-import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 
 class CategoryChip extends StatelessWidget {
   final CategoryEntity category;
@@ -686,29 +771,24 @@ class CategoryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 60.0,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          decoration: BoxDecoration(
-            color: category.isSelected
-                ? DealStylingConstants.redColor
-                : DealStylingConstants.bgColor,
-            borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(
-              color: category.isSelected
-                  ? DealStylingConstants.redColor
-                  : DealStylingConstants.borderColor,
-              width: 1.0,
-            ),
-          ),
-          child: Center(
-            child: Text(
-              category.name,
-              style: DealStylingConstants.cardBtnStyle.copyWith(
-                color: category.isSelected ? Colors.white : Colors.black,
-              ),
+    final isSelected = category.isSelected;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        decoration: BoxDecoration(
+          // Dark fill when selected, soft light grey when unselected
+          color: isSelected ? const Color(0xFF0F172A) : const Color(0xFFF3F4F6),
+          borderRadius: BorderRadius.circular(24.0),
+        ),
+        child: Center(
+          child: Text(
+            category.name,
+            style: TextStyle(
+              fontSize: 14.0,
+              fontWeight: FontWeight.w600,
+              color: isSelected ? Colors.white : const Color(0xFF1F2937),
             ),
           ),
         ),
@@ -725,28 +805,30 @@ class HeroHeadingText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Find your next',
-                        style: DealStylingConstants.heroHeadlineStyle,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'escape',
-                            style: DealStylingConstants.heroHeadlineStyle
-                                .copyWith(color: DealStylingConstants.redColor),
-                          ),
-                          Text(
-                            ' today.',
-                            style: DealStylingConstants.heroHeadlineStyle,
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: DealStylingConstants.margin),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                "India's home for ",
+                style: DealStylingConstants.heroHeadlineStyle.copyWith(color: Colors.white),
+              ),
+              Text(
+                "last",
+                style: DealStylingConstants.heroHeadlineStyle.copyWith(color: DealStylingConstants.redColor),
+              ),
+            ],
+          ),
+          Text(
+            "minute stays.",
+            style: DealStylingConstants.heroHeadlineStyle.copyWith(color: DealStylingConstants.redColor),
+          ),
+        ],
+      ),
+    );
   }
 } 
 // --- File: E:\IT\Flutter Marathon july aug\FLUTTER PREPS\ASSIGNMENT APPS intern\last_minutes_deal\lib\deals\presentation\widgets\bottom_bar\bottomOption.dart ---  
@@ -866,9 +948,8 @@ class BookNowButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: onBookTap,
       child: Container(
-        height: 40.0,
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 1),
+        height: 34.0, // Reduced height
+        padding: const EdgeInsets.symmetric(horizontal: 12.0), // Allows width to adapt to text
         decoration: DealStylingConstants.bookNowContDeco,
         child: Center(
           child: Text(
@@ -932,7 +1013,6 @@ import 'package:last_minutes_deal/deals/presentation/widgets/deal_card/book_now_
 import 'package:last_minutes_deal/deals/presentation/widgets/deal_card/deal_detail_module.dart';
 import 'package:last_minutes_deal/deals/presentation/widgets/deal_card/deal_image_module.dart';
 
-
 class DealCard extends StatelessWidget {
   final DealEntity deal;
   final VoidCallback? onBookTap;
@@ -950,16 +1030,14 @@ class DealCard extends StatelessWidget {
     return Container(
       width: DealStylingConstants.cardWidth,
       height: DealStylingConstants.cardHeight,
-      padding: const EdgeInsets.all(8.0),
+      // Removed internal padding so the image can touch the edges
       decoration: BoxDecoration(
         color: DealStylingConstants.bgColor,
         borderRadius: BorderRadius.circular(DealStylingConstants.cardRadius),
         border: Border.all(color: DealStylingConstants.borderColor),
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(DealStylingConstants.cardRadius),
-        ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(DealStylingConstants.cardRadius),
         child: Column(
           children: [
             // 1. Image, Live Deal Tag, and Favorite Icon Module
@@ -967,21 +1045,43 @@ class DealCard extends StatelessWidget {
               deal: deal,
               onFavoriteTap: onFavoriteTap,
             ),
-            const SizedBox(height: 15.0),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // 2. Deal Details Module (Name, Location, Rating, Price)
-                  DealDetailModule(
-                    deal: deal,
-                  ),
-                  const SizedBox(height: 8.0),
-                  // 3. Book Now Button Module
-                  BookNowButtonModule(
-                    onBookTap: onBookTap,
-                  ),
-                ],
+              // 2. Padding applied ONLY to the details/bottom section
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // 3. Deal Details Module (Name, Location, Rating)
+                    DealDetailModule(
+                      deal: deal,
+                    ),
+                    // 4. Price and Book Now Button Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${deal.currencySymbol}${deal.pricePerNight}',
+                              style: DealStylingConstants.cardPriceStyle,
+                            ),
+                            Text(
+                              '/night',
+                              style: DealStylingConstants.reviewCountStyle,
+                            ),
+                          ],
+                        ),
+                        BookNowButtonModule(
+                          onBookTap: onBookTap,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -1008,61 +1108,58 @@ class DealDetailModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(deal.name, style: DealStylingConstants.cardNameStyle),
-        const SizedBox(height: 8.0),
+        Text(
+          deal.name, 
+          style: DealStylingConstants.cardNameStyle,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: 4.0), // Reduced spacing
         Row(
           children: [
             const Icon(
               Icons.location_on_outlined,
-              size: 18,
+              size: 16,
               color: Color.fromARGB(255, 98, 105, 118),
             ),
-            const SizedBox(width: 3.0),
-            Text(
-              '${deal.location},',
-              style: DealStylingConstants.cardLocationStyle,
+            const SizedBox(width: 2.0),
+            Expanded(
+              child: Text(
+                deal.location, // Removed trailing comma to match UI
+                style: DealStylingConstants.cardLocationStyle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ],
         ),
-        const SizedBox(height: 8.0),
+        const SizedBox(height: 4.0), // Reduced spacing
         Row(
           children: [
             const Icon(
               Icons.star,
-              size: 18,
+              size: 16,
               color: DealStylingConstants.redColor,
             ),
-            const SizedBox(width: 3.0),
+            const SizedBox(width: 4.0),
             Text(
               deal.rating.toString(),
               style: DealStylingConstants.cardRatingStyle,
             ),
+            const SizedBox(width: 4.0),
             Text(
-              '(${deal.reviewCount.toString()})',
+              '(${deal.reviewCount})',
               style: DealStylingConstants.reviewCountStyle,
             ),
           ],
         ),
-        const SizedBox(height: 8.0),
-        Row(
-          children: [
-            Text(
-              '${deal.currencySymbol} ${deal.pricePerNight}',
-              style: DealStylingConstants.cardPriceStyle,
-            ),
-            Text(
-              ' / night',
-              style: DealStylingConstants.reviewCountStyle,
-            ),
-          ],
-        ),
+        // Note: Price row was moved to DealCard to sit adjacent to the button
       ],
     );
   }
 } 
 // --- File: E:\IT\Flutter Marathon july aug\FLUTTER PREPS\ASSIGNMENT APPS intern\last_minutes_deal\lib\deals\presentation\widgets\deal_card\deal_image_module.dart ---  
 import 'package:flutter/material.dart';
-import 'package:last_minutes_deal/core/constants/asset_paths.dart';
 import 'package:last_minutes_deal/deals/domain/entities/deal_entity.dart';
 import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 
@@ -1079,14 +1176,17 @@ class DealImageModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 165,
+      height: 115, // Reduced height to allow more space for details
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(deal.imageUrl),
             fit: BoxFit.cover,
           ),
-          borderRadius: BorderRadius.circular(DealStylingConstants.cardRadius),
+          // Only round the top corners to match the card edges
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(DealStylingConstants.cardRadius),
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -1098,13 +1198,20 @@ class DealImageModule extends StatelessWidget {
                 deal.isLiveDeal
                     ? Flexible(
                         child: Container(
-                          height: 25,
-                          decoration:
-                              DealStylingConstants.liveDealContainerDeco,
+                          height: 24,
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          decoration: BoxDecoration(
+                            color: DealStylingConstants.redColor, // Solid red background
+                            borderRadius: BorderRadius.circular(12.0), // Rounded pill shape
+                          ),
                           child: Center(
                             child: Text(
                               DealStylingConstants.liveDealText,
-                              style: DealStylingConstants.liveDealTextStyle,
+                              style: const TextStyle(
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white, // White text to match UI
+                              ),
                             ),
                           ),
                         ),
@@ -1114,7 +1221,8 @@ class DealImageModule extends StatelessWidget {
                 GestureDetector(
                   onTap: onFavoriteTap,
                   child: CircleAvatar(
-                    radius: 18.0,
+                    radius: 16.0, 
+                    backgroundColor: Colors.white,
                     child: Icon(
                       deal.isFavorite ? Icons.favorite : Icons.favorite_border,
                       size: 18.0,
@@ -1129,10 +1237,79 @@ class DealImageModule extends StatelessWidget {
       ),
     );
   }
-}
- 
+} 
 // --- File: E:\IT\Flutter Marathon july aug\FLUTTER PREPS\ASSIGNMENT APPS intern\last_minutes_deal\lib\deals\presentation\widgets\search_stays_card\check_in_out_module.dart ---  
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
+
+class CheckInOutModule extends StatelessWidget {
+  const CheckInOutModule({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        // Red Icon in circular border
+        Container(
+          padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: const Color.fromARGB(255, 244, 66, 66).withOpacity(0.2)
+           ),
+          child: const Icon(
+            Icons.calendar_today_outlined,
+            color: DealStylingConstants.redColor,
+            size: 20.0,
+          ),
+        ),
+        const SizedBox(width: 16.0),
+        
+        // Unified Text Column for Check In & Check Out
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'CHECK-IN — CHECK-OUT',
+                style: GoogleFonts.roboto(
+                  fontSize: 10.0,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFF9CA3AF),
+                  letterSpacing: 0.8,
+                ),
+              ),
+              const SizedBox(height: 4.0),
+              Row(
+                children: [
+                  Text(
+                    'Oct 25 — Oct 27',
+                    style: GoogleFonts.roboto(
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text(
+                '• 2 nights',
+                style: GoogleFonts.roboto(
+                  fontSize: 10.0,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFF9CA3AF),
+                  letterSpacing: 0.8,
+                ),
+              ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+/* import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 
@@ -1249,9 +1426,73 @@ class CheckInOutModule extends StatelessWidget {
       ),
     );
   }
-} 
+} */ 
 // --- File: E:\IT\Flutter Marathon july aug\FLUTTER PREPS\ASSIGNMENT APPS intern\last_minutes_deal\lib\deals\presentation\widgets\search_stays_card\destination_module.dart ---  
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
+
+class DestinationModule extends StatelessWidget {
+  const DestinationModule({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        // Red Icon in circular border
+        Container(
+          padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: DealStylingConstants.redColor.withOpacity(0.2),
+            ),
+          child: const Icon(
+            Icons.location_on_outlined,
+            color: DealStylingConstants.redColor,
+            size: 20.0,
+          ),
+        ),
+        const SizedBox(width: 16.0),
+
+        // Text Column
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'DESTINATION',
+                style: GoogleFonts.roboto(
+                  fontSize: 10.0,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFF9CA3AF),
+                  letterSpacing: 0.8,
+                ),
+              ),
+              const SizedBox(height: 4.0),
+              Text(
+                'Goa, India',
+                style: GoogleFonts.roboto(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+        
+        // Trailing Chevron
+        const Icon(
+          Icons.keyboard_arrow_down_rounded,
+          color: Color(0xFF9CA3AF),
+          size: 24.0,
+        ),
+      ],
+    );
+  }
+}
+/* import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 
@@ -1321,9 +1562,120 @@ class DestinationModule extends StatelessWidget {
     );
   }
 }
- 
+ */ 
 // --- File: E:\IT\Flutter Marathon july aug\FLUTTER PREPS\ASSIGNMENT APPS intern\last_minutes_deal\lib\deals\presentation\widgets\search_stays_card\guest_and_search_module.dart ---  
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
+
+class GuestsAndSearchModule extends StatelessWidget {
+  const GuestsAndSearchModule({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // 1. GUESTS ROW
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Red Icon in circular border
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: DealStylingConstants.redColor.withOpacity(0.2),
+              ),
+              child: const Icon(
+                Icons.person_outline,
+                color: DealStylingConstants.redColor,
+                size: 20.0,
+              ),
+            ),
+            const SizedBox(width: 16.0),
+            
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'GUESTS',
+                    style: GoogleFonts.roboto(
+                      fontSize: 10.0,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF9CA3AF),
+                      letterSpacing: 0.8,
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  Row(
+                    children: [
+                      Text(
+                        '2 Guests',
+                        style: GoogleFonts.roboto(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                    '• 1 Room',
+                    style: GoogleFonts.roboto(
+                      fontSize: 10.0,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF9CA3AF),
+                      letterSpacing: 0.8,
+                    ),
+                  ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        
+        const SizedBox(height: 24.0),
+        
+        // 2. SEARCH BUTTON
+        SizedBox(
+          width: double.infinity,
+          height: 52.0,
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: DealStylingConstants.redColor,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.search,
+                  color: Colors.white,
+                  size: 20.0,
+                ),
+                const SizedBox(width: 8.0),
+                Text(
+                  'Search Stays',
+                  style: GoogleFonts.roboto(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+/* import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 
@@ -1433,9 +1785,69 @@ class GuestsAndSearchModule extends StatelessWidget {
       ),
     );
   }
-} 
+} */ 
 // --- File: E:\IT\Flutter Marathon july aug\FLUTTER PREPS\ASSIGNMENT APPS intern\last_minutes_deal\lib\deals\presentation\widgets\search_stays_card\search_stays_card.dart ---  
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
+import 'package:last_minutes_deal/deals/presentation/controller/deal_home_controller.dart';
+import 'package:last_minutes_deal/deals/presentation/widgets/search_stays_card/check_in_out_module.dart';
+import 'package:last_minutes_deal/deals/presentation/widgets/search_stays_card/destination_module.dart';
+import 'package:last_minutes_deal/deals/presentation/widgets/search_stays_card/guest_and_search_module.dart';
+
+class SearchStaysCard extends GetView<DealHomeController> {
+  const SearchStaysCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 18.0),
+      padding: const EdgeInsets.all(20.0),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: DealStylingConstants.bgColor,
+        borderRadius: BorderRadius.circular(24.0), // Matched rounded corners from design
+        boxShadow: const [
+          BoxShadow(
+            color: DealStylingConstants.shadowColor,
+            blurRadius: 15.0,
+            offset: Offset(0, 8),
+          ),
+        ],
+      ),
+      child: const Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          DestinationModule(),
+          
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 16.0),
+            child: Divider(
+              height: 1.0, 
+              color: DealStylingConstants.borderLightColor, 
+              indent: 48.0, // Indented past the icon
+            ),
+          ),
+          
+          CheckInOutModule(),
+          
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 16.0),
+            child: Divider(
+              height: 1.0, 
+              color: DealStylingConstants.borderLightColor, 
+              indent: 48.0, // Indented past the icon
+            ),
+          ),
+          
+          GuestsAndSearchModule(),
+        ],
+      ),
+    );
+  }
+}
+/* import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 import 'package:last_minutes_deal/deals/presentation/controller/deal_home_controller.dart';
@@ -1473,7 +1885,7 @@ class SearchStaysCard extends GetView<DealHomeController> {
       ),
     );
   }
-} 
+} */ 
 // --- File: E:\IT\Flutter Marathon july aug\FLUTTER PREPS\ASSIGNMENT APPS intern\last_minutes_deal\lib\deals\presentation\widgets\section_heading\section_heading_widget.dart ---  
 import 'package:flutter/material.dart';
 import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';

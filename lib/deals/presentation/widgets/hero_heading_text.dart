@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:last_minutes_deal/deals/presentation/constants/deal_styling_constants.dart';
 

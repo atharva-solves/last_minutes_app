@@ -15,12 +15,12 @@ class DestinationModule extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: DealStylingConstants.redColor.withOpacity(0.2),
+            color: DealStylingConstants.redColor.withOpacity(0.1),
             ),
           child: const Icon(
             Icons.location_on_outlined,
-            color: DealStylingConstants.redColor,
-            size: 20.0,
+            color: Color.fromARGB(255, 224, 49, 49),
+            size: DealStylingConstants.searchStayIconSize,
           ),
         ),
         const SizedBox(width: 16.0),
@@ -32,12 +32,7 @@ class DestinationModule extends StatelessWidget {
             children: [
               Text(
                 'DESTINATION',
-                style: GoogleFonts.roboto(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.w700,
-                  color: const Color(0xFF9CA3AF),
-                  letterSpacing: 0.8,
-                ),
+                style: DealStylingConstants.searchHeadingTextStyle,
               ),
               const SizedBox(height: 4.0),
               Text(
